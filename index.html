@@ -3,14 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Il mio Blog Minimalista</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
             font-family: 'Courier New', Courier, monospace;
-            margin: 40px;
+            margin: 0;
             background-color: #ffffff;
             color: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
-        h1, h2 {
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
             margin-bottom: 20px;
         }
         .post {
@@ -24,13 +37,13 @@
     </style>
 </head>
 <body>
-    <h1>Il mio Blog</h1>
+    <div class="container">
+        <div class="post">
+            <h2>Titolo del Post 1</h2>
+            <p>Questo è il contenuto del primo post. Sembra scritto su un foglio di quaderno.</p>
+        </div>
 
-    <div class="post">
-        <h2>Titolo del Post 1</h2>
-        <p>Questo è il contenuto del primo post. Sembra scritto su un foglio di quaderno.</p>
+        <!-- Aggiungi altri post qui -->
     </div>
-
-    <!-- Aggiungi altri post qui -->
 </body>
 </html>
