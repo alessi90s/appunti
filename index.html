@@ -23,15 +23,16 @@
             background-color: #ffffff;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             position: relative;
+            line-height: 2;
         }
         .container::before {
             content: "";
             position: absolute;
             top: 0;
-            left: 20px;
-            right: 20px;
+            left: 0;
+            right: 0;
             bottom: 0;
-            background-image: linear-gradient(to bottom, transparent 95%, #ccc 95%);
+            background-image: linear-gradient(to bottom, #ccc 40px, transparent 0);
             background-size: 100% 40px;
             z-index: -1;
         }
