@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Evidenziatore Cliente/Base",
-  "version": "1.0",
-  "description": "Evidenzia 'CLIENTE' o 'BASE', clicca 'VEDI SU BACKOFFICE' o cerca l'email per aprire un URL personalizzato.",
+  "version": "1.1",
+  "description": "Evidenzia 'CLIENTE' o 'BASE', clicca 'VEDI SU BACK OFFICE' o cerca l'email per aprire un URL personalizzato.",
   "permissions": ["tabs", "scripting", "activeTab"],
   "action": {
     "default_title": "Esegui Script"
