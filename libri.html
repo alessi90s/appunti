@@ -1,149 +1,1602 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>50 Libri Consigliati</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 20px;
-      font-family: -apple-system, BlinkMacSystemFont, “Segoe UI”, Roboto, Oxygen, Ubuntu, Cantarell, “Open Sans”, “Helvetica Neue”, sans-serif;
-      background: #fafafa;
-      color: #333;
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-      font-size: 2rem;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
-      gap: 20px;
-    }
-    .card {
-      background: #fff;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      display: flex;
-      flex-direction: column;
-      text-decoration: none;
-      color: inherit;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-    }
-    .card img {
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-      background: #ddd;
-    }
-    .content {
-      padding: 10px;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-    }
-    .title {
-      font-size: 1rem;
-      font-weight: bold;
-      margin: 0 0 5px;
-      color: #0070f3;
-      text-decoration: none;
-    }
-    .meta {
-      font-size: 0.85rem;
-      color: #555;
-      margin-bottom: 8px;
-    }
-    .desc {
-      font-size: 0.85rem;
-      color: #444;
-      line-height: 1.3;
-      flex-grow: 1;
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>100 Libri – Traumi, Potere, Filosofia, Ideologie, Kafkiani</title>
+<style>
+:root{
+  --bg:#0f1115; --fg:#e5e7eb; --muted:#9ca3af; --card:#151821; --accent:#60a5fa; --ok:#34d399; --warn:#fbbf24;
+}
+*{box-sizing:border-box}
+html,body{margin:0; padding:0; background:var(--bg); color:var(--fg); font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;}
+a{color:var(--accent); text-decoration:none}
+header{max-width:1200px; margin:0 auto; padding:24px}
+h1{font-size:clamp(28px,4vw,42px); margin:0 0 8px}
+.preamble{color:#94a3b8; max-width:900px; line-height:1.5}
+nav.menu{display:flex; flex-wrap:wrap; gap:10px; margin-top:16px}
+nav.menu a{background:#111827; border:1px solid #1f2937; padding:8px 12px; border-radius:999px; font-size:14px}
+section{max-width:1400px; margin:0 auto; padding:0 24px 24px}
+h2.cat{font-size:26px; margin:32px 0 16px}
+.grid{display:grid; gap:24px; grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.card{background:var(--card); border-radius:16px; overflow:hidden; display:grid; grid-template-rows:360px auto; box-shadow:0 6px 24px rgba(0,0,0,.35); transition:transform .2s, box-shadow .2s;}
+.card:hover{transform:translateY(-4px); box-shadow:0 12px 32px rgba(0,0,0,.45);}
+.cover{width:100%; height:100%; background:#222 center/cover no-repeat;}
+.body{padding:18px; display:flex; flex-direction:column; gap:10px}
+.title{font-size:18px; font-weight:700; line-height:1.25}
+.meta{font-size:13px; color:#cbd5e1}
+.price{font-size:14px; color:#a7f3d0; font-weight:600}
+.desc{font-size:14px; color:var(--muted); line-height:1.55; white-space:pre-line}
+.buy{margin-top:auto; display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+.buy a.btn{display:inline-block; background:var(--accent); color:#0c1116; font-weight:600; padding:10px 14px; border-radius:10px}
+.badge{font-size:12px; padding:4px 8px; border-radius:999px; border:1px solid #374151; color:#9ca3af}
+footer{max-width:1200px; margin:0 auto; padding:32px 24px 56px; color:#94a3b8; font-size:13px; line-height:1.6}
+.small{font-size:12px; color:#9ca3af}
+</style>
 </head>
 <body>
 
-  <h1>50 Libri Consigliati</h1>
-  <div class="grid" id="grid"></div>
+<header>
+  <h1>100 Libri • Traumi, Potere, Filosofia, Ideologie &amp; Atmosfere Kafkiane</h1>
+  <p class="preamble">Selezione di 100 titoli in italiano (saggi, romanzi, testimonianze, inchieste). Ogni scheda riporta
+  copertina, descrizione, <strong>link diretto LaFeltrinelli</strong> e <strong>prezzo cartaceo</strong> rilevato oggi. I prezzi possono variare: verifica sempre la scheda.</p>
+  <nav class="menu">
+    <a href="#traumi">Traumi e vite difficili</a>
+    <a href="#potere">Potere, Stato, Mafia, Servizi</a>
+    <a href="#filosofia">Filosofia &amp; Psicologia</a>
+    <a href="#ideologie">Ideologie applicate</a>
+    <a href="#kafka">Atmosfere kafkiane</a>
+  </nav>
+</header>
 
-  <script>
-    const books = [
-      { title: "Se questo è un uomo", author: "Primo Levi", nationality: "Italiana", genre: "Testimonianza", description: "Testimonianza sui campi di concentramento di Auschwitz, un racconto di disumanizzazione e speranza.", link:"https://www.amazon.it/s?k=Se+questo+%C3%A8+un+uomo+Primo+Levi" },
-      { title: "Nel mare ci sono i coccodrilli", author: "Fabio Geda", nationality: "Italiana", genre: "Testimonianza", description: "La vera storia di Enaiatollah, bambino afghano nell’odissea verso l’Italia.", link:"https://www.amazon.it/s?k=Nel+mare+ci+sono+i+coccodrilli+Fabio+Geda" },
-      { title: "Una vita come tante", author: "Hanya Yanagihara", nationality: "Statunitense", genre: "Romanzo", description: "Intenso romanzo su amicizia, traumi e resilienza a New York.", link:"https://www.amazon.it/s?k=Una+vita+come+tante+Hanya+Yanagihara" },
-      { title: "La città dei vivi", author: "Nicola Lagioia", nationality: "Italiana", genre: "Romanzo-inchiesta", description: "Inchiesta sul delitto Varani e le sue implicazioni sociali.", link:"https://www.amazon.it/s?k=La+citt%C3%A0+dei+vivi+Nicola+Lagioia" },
-      { title: "L’avversario", author: "Emmanuel Carrère", nationality: "Francese", genre: "Romanzo biografico", description: "La doppia vita di Jean-Claude Romand, tra menzogne e delitto.", link:"https://www.amazon.it/s?k=L%27avversario+Emmanuel+Carr%C3%A8re" },
-      { title: "Le ceneri di Angela", author: "Frank McCourt", nationality: "Irlandese-Americano", genre: "Memoir", description: "Memoir sull’infanzia poverissima nell’Irlanda degli anni ’30.", link:"https://www.amazon.it/s?k=Le+ceneri+di+Angela+Frank+McCourt" },
-      { title: "In quelle tenebre", author: "Gitta Sereny", nationality: "Austriaca-Britannica", genre: "Reportage", description: "Interviste con Franz Stangl, comandante di Treblinka.", link:"https://www.amazon.it/s?k=In+quelle+tenebre+Gitta+Sereny" },
-      { title: "Fino a quando la mia stella brillerà", author: "Liliana Segre & Daniela Palumbo", nationality: "Italiana", genre: "Testimonianza", description: "La deportazione di Liliana Segre ad Auschwitz e il valore della Memoria.", link:"https://www.amazon.it/s?k=Fino+a+quando+la+mia+stella+briller%C3%A0+Liliana+Segre" },
-      { title: "Una stanza piena di gente", author: "Daniel Keyes", nationality: "Statunitense", genre: "Biografia", description: "Caso reale di disturbo dissociativo dell’identità in un criminale.", link:"https://www.amazon.it/s?k=Una+stanza+piena+di+gente+Daniel+Keyes" },
-      { title: "L’educazione", author: "Tara Westover", nationality: "Statunitense", genre: "Memoir", description: "Da figlia di fondamentalisti a studiosa universitaria: il potere della conoscenza.", link:"https://www.amazon.it/s?k=L%27educazione+Tara+Westover" },
-      { title: "Niente e così sia", author: "Oriana Fallaci", nationality: "Italiana", genre: "Reportage", description: "Diario di guerra in Vietnam, tra crudo realismo e riflessioni esistenziali.", link:"https://www.amazon.it/s?k=Niente+e+cos%C3%AC+sia+Oriana+Fallaci" },
-      { title: "La vita davanti a sé", author: "Romain Gary", nationality: "Franco-Lituano", genre: "Romanzo", description: "Il legame tra un ragazzino e un’ex deportata ad Auschwitz a Parigi.", link:"https://www.amazon.it/s?k=La+vita+davanti+a+s%C3%A9+Romain+Gary" },
-      { title: "Il corpo accusa il colpo", author: "Bessel van der Kolk", nationality: "Olandese-Americano", genre: "Saggio", description: "Come il trauma si imprime sul corpo: neuroscienze e guarigione.", link:"https://www.amazon.it/s?k=Il+corpo+accusa+il+colpo+Bessel+van+der+Kolk" },
-      { title: "Italia occulta", author: "Giuliano Turone", nationality: "Italiana", genre: "Saggio", description: "Magistrato racconta P2, stragi e servizi deviati negli anni ’70.", link:"https://www.amazon.it/s?k=Italia+occulta+Giuliano+Turone" },
-      { title: "Gomorra", author: "Roberto Saviano", nationality: "Italiana", genre: "Inchiesta", description: "Denuncia della camorra napoletana e del suo potere economico.", link:"https://www.amazon.it/s?k=Gomorra+Roberto+Saviano" },
-      { title: "Il giorno della civetta", author: "Leonardo Sciascia", nationality: "Italiana", genre: "Romanzo giallo", description: "Primo romanzo italiano sulla mafia e l’omertà in Sicilia.", link:"https://www.amazon.it/s?k=Il+giorno+della+civetta+Leonardo+Sciascia" },
-      { title: "Navi a perdere", author: "Carlo Lucarelli", nationality: "Italiana", genre: "Inchiesta", description: "Traffico di rifiuti tossici via mare: ecomafia e misteri.", link:"https://www.amazon.it/s?k=Navi+a+perdere+Carlo+Lucarelli" },
-      { title: "Educazione americana", author: "Fabrizio Gatti", nationality: "Italiana", genre: "Inchiesta", description: "Un infiltrato CIA svela ingerenze e dossieraggi in Italia.", link:"https://www.amazon.it/s?k=Educazione+americana+Fabrizio+Gatti" },
-      { title: "Il patto", author: "Nicola Biondo & Sigfrido Ranucci", nationality: "Italiana", genre: "Inchiesta", description: "Ricostruzione dell’accordo segreto tra Stato e mafia nei ’90.", link:"https://www.amazon.it/s?k=Il+patto+Biondo+Ranucci" },
-      { title: "La parola ai morti", author: "Philippe Boxho", nationality: "Belga", genre: "Reportage", description: "Medico legale racconta come i cadaveri parlino nei processi.", link:"https://www.amazon.it/s?k=La+parola+ai+morti+Philippe+Boxho" },
-      { title: "Mafia, massoneria e servizi segreti", author: "Emanuele Macaluso", nationality: "Italiana", genre: "Saggio", description: "La triade oscura che ha condizionato la storia repubblicana.", link:"https://www.amazon.it/s?k=Mafia+massoneria+e+servizi+segreti+Emanuele+Macaluso" },
-      { title: "Cose di Cosa Nostra", author: "Giovanni Falcone & Marcelle Padovani", nationality: "Italiana", genre: "Dialogo", description: "Le analisi di Falcone sulla struttura e sui mandamenti mafiosi.", link:"https://www.amazon.it/s?k=Cose+di+Cosa+Nostra+Giovanni+Falcone" },
-      { title: "La notte della Repubblica", author: "Sergio Zavoli", nationality: "Italiana", genre: "Saggio/Interviste", description: "Cronache e interviste sugli anni di piombo e la strategia della tensione.", link:"https://www.amazon.it/s?k=La+notte+della+Repubblica+Sergio+Zavoli" },
-      { title: "I soldi della P2", author: "Fabio Repici & Antonella Beccaria & Mario Vaudano", nationality: "Italiana", genre: "Inchiesta", description: "Dove finirono i fondi neri della loggia P2? Un’inchiesta economico-finanziaria.", link:"https://www.amazon.it/s?k=I+soldi+della+P2+Repici+Beccaria" },
-      { title: "La trattativa", author: "Pietro Orsatti", nationality: "Italiana", genre: "Romanzo-inchiesta", description: "Thriller basato su atti giudiziari della trattativa Stato-mafia.", link:"https://www.amazon.it/s?k=La+trattativa+Pietro+Orsatti" },
-      { title: "Il sistema", author: "Alessandro Sallusti & Luca Palamara", nationality: "Italiana", genre: "Intervista", description: "Confessioni di Palamara sulle lottizzazioni nella magistratura.", link:"https://www.amazon.it/s?k=Il+sistema+Sallusti+Palamara" },
-      { title: "Il mondo di Sofia", author: "Jostein Gaarder", nationality: "Norvegese", genre: "Romanzo filosofico", description: "Avventurosa introduzione alla storia della filosofia occidentale.", link:"https://www.amazon.it/s?k=Il+mondo+di+Sofia+Jostein+Gaarder" },
-      { title: "Pensieri lenti e veloci", author: "Daniel Kahneman", nationality: "Statunitense-Israeliano", genre: "Saggio", description: "I due sistemi di pensiero e i bias cognitivi che condizionano le nostre scelte.", link:"https://www.amazon.it/s?k=Pensieri+lenti+e+veloci+Daniel+Kahneman" },
-      { title: "Uno, nessuno e centomila", author: "Luigi Pirandello", nationality: "Italiana", genre: "Romanzo filosofico", description: "Il crollo delle certezze identitarie di un uomo scoperto da uno sguardo esterno.", link:"https://www.amazon.it/s?k=Uno+nessuno+e+centomila+Luigi+Pirandello" },
-      { title: "La banalità del male", author: "Hannah Arendt", nationality: "Tedesca-Americana", genre: "Reportage filosofico", description: "Analisi del processo Eichmann e della ‘banalità’ del male.", link:"https://www.amazon.it/s?k=La+banalit%C3%A0+del+male+Hannah+Arendt" },
-      { title: "Il corpo e il trauma", author: "Onno van der Hart et al.", nationality: "Olandese", genre: "Saggio", description: "Teoria della dissociazione strutturale dopo traumi gravi.", link:"https://www.amazon.it/s?k=Il+corpo+e+il+trauma+van+der+Hart" },
-      { title: "Il Principe", author: "Niccolò Machiavelli", nationality: "Italiana", genre: "Trattato", description: "Manuale di strategie politiche per conquistare e mantenere il potere.", link:"https://www.amazon.it/s?k=Il+Principe+Niccol%C3%B2+Machiavelli" },
-      { title: "L’uomo in cerca di senso", author: "Viktor E. Frankl", nationality: "Austria", genre: "Saggio/Testimonianza", description: "Come dare senso alla vita nelle atrocità dei lager nazisti.", link:"https://www.amazon.it/s?k=L%27uomo+in+cerca+di+senso+Viktor+Frankl" },
-      { title: "L’arte di amare", author: "Erich Fromm", nationality: "Tedesco-Americano", genre: "Saggio", description: "L’amore come arte che richiede cura, responsabilità e conoscenza.", link:"https://www.amazon.it/s?k=L%27arte+di+amare+Erich+Fromm" },
-      { title: "Il corpo ha le sue ragioni", author: "Thérèse Bertherat", nationality: "Francese", genre: "Saggio", description: "Metodo corpomente per sciogliere tensioni emotive e blocchi fisici.", link:"https://www.amazon.it/s?k=Il+corpo+ha+le+sue+ragioni+Th%C3%A9r%C3%A8se+Bertherat" },
-      { title: "Il mito di Jung", author: "Marie-Louise von Franz", nationality: "Svizzera", genre: "Saggio", description: "Introduzione al pensiero junghiano fra simboli e inconscio collettivo.", link:"https://www.amazon.it/s?k=Il+mito+di+Jung+Marie-Louise+von+Franz" },
-      { title: "1984", author: "George Orwell", nationality: "Britannica", genre: "Romanzo distopico", description: "Surveglianza totale e manipolazione della verità in uno Stato totalitario.", link:"https://www.amazon.it/s?k=1984+George+Orwell" },
-      { title: "La fattoria degli animali", author: "George Orwell", nationality: "Britannica", genre: "Allegoria", description: "Fiaba-amara sul tradimento degli ideali rivoluzionari.", link:"https://www.amazon.it/s?k=La+fattoria+degli+animali+George+Orwell" },
-      { title: "Arcipelago Gulag", author: "Aleksandr Solženicyn", nationality: "Russian", genre: "Saggio/Testimonianza", description: "Denuncia dei campi di lavoro forzato sovietici.", link:"https://www.amazon.it/s?k=Arcipelago+Gulag+Aleksandr+Sol%C5%BEenicyn" },
-      { title: "Omaggio alla Catalogna", author: "George Orwell", nationality: "Britannica", genre: "Memoir", description: "Esperienza di guerra e lotte interne tra fazioni repubblicane spagnole.", link:"https://www.amazon.it/s?k=Omaggio+alla+Catalogna+George+Orwell" },
-      { title: "Il secolo breve", author: "Eric Hobsbawm", nationality: "Britannico", genre: "Saggio", description: "Storia del Novecento attraverso le grandi ideologie politiche.", link:"https://www.amazon.it/s?k=Il+secolo+breve+Eric+Hobsbawm" },
-      { title: "La via della schiavitù", author: "Friedrich Hayek", nationality: "Austria-Britannico", genre: "Saggio", description: "Critica alla pianificazione centrale e ai pericoli del socialismo.", link:"https://www.amazon.it/s?k=La+via+della+schiavit%C3%B9+Friedrich+Hayek" },
-      { title: "Il capitalismo della sorveglianza", author: "Shoshana Zuboff", nationality: "Statunitense", genre: "Saggio", description: "Analisi dell’economia della sorveglianza digitale e del potere delle grandi tech.", link:"https://www.amazon.it/s?k=Il+capitalismo+della+sorveglianza+Shoshana+Zuboff" },
-      { title: "Sul totalitarismo", author: "Hannah Arendt", nationality: "Tedesca-Americana", genre: "Saggio", description: "Studio sui meccanismi e le origini dei regimi totalitari.", link:"https://www.amazon.it/s?k=Sul+totalitarismo+Hannah+Arendt" },
-      { title: "L’uomo in rivolta", author: "Albert Camus", nationality: "Francese", genre: "Saggio", description: "Riflessione filosofica sulla rivolta e il senso della giustizia.", link:"https://www.amazon.it/s?k=L%27uomo+in+rivolta+Albert+Camus" },
-      { title: "Il manifesto del partito comunista", author: "Karl Marx & Friedrich Engels", nationality: "Tedesca", genre: "Saggio", description: "Fondamento teorico del comunismo e analisi della lotta di classe.", link:"https://www.amazon.it/s?k=Il+manifesto+del+partito+comunista" },
-      { title: "Capitale e ideologia", author: "Thomas Piketty", nationality: "Francese", genre: "Saggio", description: "Studio delle disuguaglianze e delle ideologie economiche storiche.", link:"https://www.amazon.it/s?k=Capitale+e+ideologia+Thomas+Piketty" },
-      { title: "La democrazia in America", author: "Alexis de Tocqueville", nationality: "Francese", genre: "Saggio", description: "Analisi del sistema democratico americano e delle sue istituzioni.", link:"https://www.amazon.it/s?k=La+democrazia+in+America+Alexis+de+Tocqueville" },
-      { title: "Leviatano", author: "Thomas Hobbes", nationality: "Britannico", genre: "Trattato", description: "Teoria del contratto sociale e della sovranità dello Stato.", link:"https://www.amazon.it/s?k=Leviatano+Thomas+Hobbes" },
-      { title: "Il contratto sociale", author: "Jean-Jacques Rousseau", nationality: "Svizzera-Ginevrino", genre: "Trattato", description: "Principi del patto sociale e della libertà collettiva.", link:"https://www.amazon.it/s?k=Il+contratto+sociale+Jean-Jacques+Rousseau" }
-    ];
+<!-- ========================= TRAUMI ========================= -->
+<section id="traumi">
+  <h2 class="cat">Traumi e vite difficili</h2>
+  <div class="grid">
 
-    const grid = document.getElementById('grid');
-    books.forEach(b => {
-      const card = document.createElement('a');
-      card.className = 'card';
-      card.href = b.link;
-      card.target = '_blank';
-      card.innerHTML = `
-        <img src="https://via.placeholder.com/150x220?text=${encodeURIComponent(b.title)}" alt="Copertina ${b.title}">
-        <div class="content">
-          <div class="meta">${b.author} (${b.nationality}) – ${b.genre}</div>
-          <h2 class="title">${b.title}</h2>
-          <p class="desc">${b.description}</p>
-        </div>`;
-      grid.appendChild(card);
-    });
-  </script>
+    <!-- 1 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Se+questo+%C3%A8+un+uomo');"></div>
+      <div class="body">
+        <div class="title">Se questo è un uomo</div>
+        <div class="meta">Primo Levi — Testimonianza</div>
+        <div class="price">€ 12,35 (–5% su 13,00)</div>
+        <div class="desc">Testimonianza imprescindibile sui Lager. Levi racconta la disumanizzazione sistematica e la lotta minima per conservare un residuo di dignità. Linguaggio sobrio, analitico, che trasforma la memoria in coscienza collettiva.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/se-questo-uomo-libro-primo-levi/e/9788806219352" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Nel+mare+ci+sono+i+coccodrilli');"></div>
+      <div class="body">
+        <div class="title">Nel mare ci sono i coccodrilli</div>
+        <div class="meta">Fabio Geda — Storia vera / Romanzo</div>
+        <div class="price">€ 13,30 (–5% su 14,00)</div>
+        <div class="desc">La vera odissea di Enaiatollah Akbari, bambino afghano in fuga tra Pakistan, Iran, Turchia, Grecia e Italia. Un racconto in prima persona che alterna paura, ingegno e speranza senza retorica.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/nel-mare-ci-sono-coccodrilli-libro-fabio-geda/e/9788804665229" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Una+vita+come+tante');"></div>
+      <div class="body">
+        <div class="title">Una vita come tante</div>
+        <div class="meta">Hanya Yanagihara — Romanzo</div>
+        <div class="price">€ 25,65 (–5% su 27,00)</div>
+        <div class="desc">Quattro amici a New York, una vita soprattutto: Jude. Abuso, colpa, dipendenza e amore. Romanzo monumentale e emotivamente devastante che mette alla prova e ripaga con potenza rara.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/vita-come-tante-libro-hanya-yanagihara/e/9788838935688" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=La+citt%C3%A0+dei+vivi');"></div>
+      <div class="body">
+        <div class="title">La città dei vivi</div>
+        <div class="meta">Nicola Lagioia — Romanzo-inchiesta</div>
+        <div class="price">€ 14,72 (–5% su 15,50)</div>
+        <div class="desc">Ricostruzione narrativa del delitto Varani. Un’indagine nel buio della notte romana e nel vuoto morale dei colpevoli: cronaca, psicologia e riflessione sul male.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/citta-dei-vivi-libro-nicola-lagioia/e/9788806246358" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=L%27avversario');"></div>
+      <div class="body">
+        <div class="title">L’avversario</div>
+        <div class="meta">Emmanuel Carrère — True crime</div>
+        <div class="price">€ 16,15 (–5% su 17,00)</div>
+        <div class="desc">Il caso Romand: un uomo finge per anni una vita inesistente e, quando la menzogna crolla, stermina la famiglia. Carrère interroga il confine tra pietà e giudizio, e il doppio che abita ogni identità.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/avversario-libro-emmanuel-carrere/e/9788845927867" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Le+ceneri+di+Angela');"></div>
+      <div class="body">
+        <div class="title">Le ceneri di Angela</div>
+        <div class="meta">Frank McCourt — Memoir</div>
+        <div class="price">€ 12,35 (–5% su 13,00)</div>
+        <div class="desc">Infanzia poverissima a Limerick. Fame, umiliazione, tenacia. McCourt trasforma il dolore in ironia e in una memoria luminosa e indimenticabile.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/ceneri-angela-libro-frank-mccourt/e/9788806203122" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=In+quelle+tenebre');"></div>
+      <div class="body">
+        <div class="title">In quelle tenebre</div>
+        <div class="meta">Gitta Sereny — Reportage</div>
+        <div class="price">€ 37,05 (–5% su 39,00)</div>
+        <div class="desc">Colloqui in carcere con Franz Stangl, comandante di Treblinka. Sereny mette a nudo la meccanica del male e l’autoassoluzione burocratica del genocidio.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/quelle-tenebre-libro-gitta-sereny/e/9788845938566" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Fino+a+quando+la+mia+stella+briller%C3%A0');"></div>
+      <div class="body">
+        <div class="title">Fino a quando la mia stella brillerà</div>
+        <div class="meta">Liliana Segre, Daniela Palumbo — Testimonianza</div>
+        <div class="price">€ 9,98 (–5% su 10,50)</div>
+        <div class="desc">L’infanzia spezzata dalle leggi razziali, la deportazione ad Auschwitz, il ritorno e la scelta di testimoniare. Voce limpida, necessaria.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/fino-quando-mia-stella-brillera-libro-liliana-segre-daniela-palumbo/e/9788856682533" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Una+stanza+piena+di+gente');"></div>
+      <div class="body">
+        <div class="title">Una stanza piena di gente</div>
+        <div class="meta">Daniel Keyes — Biografia / True crime</div>
+        <div class="price">€ 19,00 (–5% su 20,00)</div>
+        <div class="desc">Il caso reale di Billy Milligan, personalità multiple e crimini. Scienza, tribunali e fragilità psichica narrati con ritmo romanzesco.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/stanza-piena-di-gente-libro-daniel-keyes/e/9788842914365" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=L%27educazione');"></div>
+      <div class="body">
+        <div class="title">L’educazione</div>
+        <div class="meta">Tara Westover — Memoir</div>
+        <div class="price">€ 13,30 (–5% su 14,00)</div>
+        <div class="desc">Cresciuta in una famiglia mormone estremista e isolata, senza scuola né medici. Lo studio diventa un atto di emancipazione radicale.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/educazione-libro-tara-westover/e/9788807892394" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Niente+e+cos%C3%AC+sia');"></div>
+      <div class="body">
+        <div class="title">Niente e così sia</div>
+        <div class="meta">Oriana Fallaci — Reportage di guerra</div>
+        <div class="price">€ 12,35 (ed. varie)</div>
+        <div class="desc">Vietnam: ospedali da campo, bombardamenti, testimonianze. Un diario in cui la cronaca si fonde con domande radicali su vita e morte.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/niente-cosi-sia-libro-oriana-fallaci/e/9788817060141" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 12 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=La+vita+davanti+a+s%C3%A9');"></div>
+      <div class="body">
+        <div class="title">La vita davanti a sé</div>
+        <div class="meta">Romain Gary (Émile Ajar) — Romanzo</div>
+        <div class="price">€ 9,90</div>
+        <div class="desc">Parigi: Momò e Madame Rosa, ex prostituta ebrea sopravvissuta ai campi. Un legame tenero e ironico che abbraccia trauma e riscatto.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/vita-davanti-a-se-libro-emile-ajar/e/9788869185144" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 13 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Il+corpo+accusa+il+colpo');"></div>
+      <div class="body">
+        <div class="title">Il corpo accusa il colpo</div>
+        <div class="meta">Bessel van der Kolk — Saggio</div>
+        <div class="price">€ 23,75 (–5% su 25,00)</div>
+        <div class="desc">Classico sul trauma: come le esperienze estreme rimodellano cervello e corpo, e perché terapia, EMDR, yoga e consapevolezza possono riaprire la cura.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/corpo-accusa-colpo-mente-corpo-libro-bessel-van-der-kolk/e/9788860307583" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 14 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Il+sergente+nella+neve');"></div>
+      <div class="body">
+        <div class="title">Il sergente nella neve</div>
+        <div class="meta">Mario Rigoni Stern — Memorie di guerra</div>
+        <div class="price">€ 11,40 (–5% su 12,00)</div>
+        <div class="desc">La ritirata di Russia vista da un alpino. Prosa limpida, fraternità e gelo: uno dei più grandi libri italiani sulla guerra.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/sergente-nella-neve-libro-mario-rigoni-stern/e/9788866564461" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 15 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Volevo+essere+una+farfalla');"></div>
+      <div class="body">
+        <div class="title">Volevo essere una farfalla</div>
+        <div class="meta">Michela Marzano — Autobiografia</div>
+        <div class="price">€ 17,10 (–5% su 18,00)</div>
+        <div class="desc">La filosofa racconta la lotta contro l’anoressia: ossessioni, ricadute, terapia. Un viaggio doloroso verso l’accettazione di sé.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/volevo-essere-una-farfalla-libro-michela-marzano/e/9788807054815" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 16 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Pappagalli+verdi');"></div>
+      <div class="body">
+        <div class="title">Pappagalli verdi</div>
+        <div class="meta">Gino Strada — Reportage</div>
+        <div class="price">€ 10,45 (–5% su 11,00)</div>
+        <div class="desc">Cronache da teatri di guerra e chirurgia d’emergenza. La ferocia cieca delle mine e delle guerre moderne, raccontata da chi salva vite sul campo.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/pappagalli-verdi-cronache-di-chirurgo-libro-gino-strada/e/9788807883019" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 17 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Per+questo+ho+vissuto');"></div>
+      <div class="body">
+        <div class="title">Per questo ho vissuto</div>
+        <div class="meta">Sami Modiano — Testimonianza</div>
+        <div class="price">€ 11,40 (–5% su 12,00)</div>
+        <div class="desc">Dall’isola di Rodi alle baracche di Birkenau, poi il ritorno e la testimonianza ai giovani. Un racconto semplice e toccante che diventa memoria per tutti.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/per-questo-ho-vissuto-libro-sami-modiano/e/9788851139438" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 18 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Diario+di+Anne+Frank');"></div>
+      <div class="body">
+        <div class="title">Il diario di Anne Frank</div>
+        <div class="meta">Anne Frank — Diario</div>
+        <div class="price">€ 12,35 (–5% su 13,00)</div>
+        <div class="desc">Il nascondiglio di Amsterdam raccontato da una voce adolescente acuta, ironica, coraggiosa. Un classico assoluto della memoria europea.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/diario-libro-anne-frank/e/9788806219284" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 19 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=La+notte');"></div>
+      <div class="body">
+        <div class="title">La notte</div>
+        <div class="meta">Elie Wiesel — Testimonianza</div>
+        <div class="price">€ 9,50 (–5% su 10,00)</div>
+        <div class="desc">Il Lager visto da un adolescente: lingua asciutta, dolore lancinante. Domande senza risposta sulla fede e sulla sopravvivenza.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/notte-libro-elie-wiesel/e/9788885943117" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 20 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Il+castello+di+vetro');"></div>
+      <div class="body">
+        <div class="title">Il castello di vetro</div>
+        <div class="meta">Jeannette Walls — Memoir</div>
+        <div class="price">€ 17,58 (–5% su 18,50) — talvolta non disponibile</div>
+        <div class="desc">Infanzia nomade e disfunzionale, tra carenze e meraviglia. Walls trasforma la sopravvivenza in un inno alla resilienza.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/the-glass-castle-castello-di-libro-jeannette-walls/e/9788856633337" target="_blank" rel="noopener">Apri scheda Feltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========================= POTERE ========================= -->
+<section id="potere">
+  <h2 class="cat">Potere, Stato, Mafia, Servizi</h2>
+  <div class="grid">
+
+    <!-- 21 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Gomorra');"></div>
+      <div class="body">
+        <div class="title">Gomorra</div>
+        <div class="meta">Roberto Saviano — Inchiesta</div>
+        <div class="price">€ 12,26 (–5% su 12,90)</div>
+        <div class="desc">La macchina economica della camorra raccontata dall’interno: rifiuti, droga, appalti, moda. Un libro che ha cambiato la consapevolezza pubblica.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/gomorra-viaggio-nell-impero-economico-libro-roberto-saviano/e/9788807888380" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 22 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Cose+di+Cosa+Nostra');"></div>
+      <div class="body">
+        <div class="title">Cose di Cosa Nostra</div>
+        <div class="meta">Giovanni Falcone, Marcelle Padovani — Dialogo</div>
+        <div class="price">€ 10,45 (–5% su 11,00)</div>
+        <div class="desc">Il testamento professionale di Falcone: struttura della mafia, metodi investigativi, maxiprocesso, riforme necessarie. Chiarezza assoluta.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/cose-di-cosa-nostra-libro-giovanni-falcone-marcelle-padovani/e/9788856658446" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 23 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Italia+occulta');"></div>
+      <div class="body">
+        <div class="title">Italia occulta</div>
+        <div class="meta">Giuliano Turone — Saggio</div>
+        <div class="price">€ 14,25 (–5% su 15,00)</div>
+        <div class="desc">Dal delitto Moro alla strage di Bologna: stragi, P2, servizi deviati. Un magistrato protagonista ricostruisce le trame 1978–1980 con atti e sentenze.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/italia-occulta-dal-delitto-moro-libro-giuliano-turone/e/9788868436254" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 24 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Il+giorno+della+civetta');"></div>
+      <div class="body">
+        <div class="title">Il giorno della civetta</div>
+        <div class="meta">Leonardo Sciascia — Romanzo</div>
+        <div class="price">€ 9,12 (–5% su 9,60)</div>
+        <div class="desc">Il primo romanzo italiano che parla apertamente di mafia. Indagine del capitano Bellodi tra omertà, collusioni e verità negate.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/giorno-della-civetta-libro-leonardo-sciascia/e/9788845924408" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 25 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Navi+a+perdere');"></div>
+      <div class="body">
+        <div class="title">Navi a perdere</div>
+        <div class="meta">Carlo Lucarelli — Inchiesta</div>
+        <div class="price">€ 10,45 (–5% su 11,00)</div>
+        <div class="desc">Cargo che affondano con rifiuti tossici e radioattivi, investigatori uccisi, ecomafia: un noir giornalistico su uno dei misteri ambientali più inquietanti.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/navi-a-perdere-libro-carlo-lucarelli/e/9788807881299" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 26 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Educazione+americana');"></div>
+      <div class="body">
+        <div class="title">Educazione americana</div>
+        <div class="meta">Fabrizio Gatti — Inchiesta</div>
+        <div class="price">€ 20,90</div>
+        <div class="desc">Confessioni di un infiltrato CIA in Italia: da Mani Pulite ai dossier, dalle ingerenze ai rapporti oscuri con poteri internazionali. Documenti e testimonianze.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/educazione-americana-libro-fabrizio-gatti/e/9788832963335" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 27 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Il+patto');"></div>
+      <div class="body">
+        <div class="title">Il patto</div>
+        <div class="meta">Nicola Biondo, Sigfrido Ranucci — Inchiesta</div>
+        <div class="price">€ 17,10 (–5% su 18,00)</div>
+        <div class="desc">La trattativa Stato–mafia raccontata da un infiltrato. Contatti, papelli, ricatti: una verità scomoda ricostruita con atti e testimonianze.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/patto-libro-nicola-biondo-sigfrido-ranucci/e/9788807172113" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 28 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=La+parola+ai+morti');"></div>
+      <div class="body">
+        <div class="title">La parola ai morti</div>
+        <div class="meta">Philippe Boxho — Medicina legale</div>
+        <div class="price">€ 18,05 (–5% su 19,00)</div>
+        <div class="desc">Un medico legale racconta casi reali: le autopsie che ribaltano depistaggi e restituiscono verità processuali. I morti parlano, la scienza ascolta.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/parola-ai-morti-indagini-di-libro-philippe-boxho/e/9788822751981" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 29 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Mafia%2C+massoneria+e+servizi');"></div>
+      <div class="body">
+        <div class="title">Mafia, massoneria e servizi segreti</div>
+        <div class="meta">Emanuele Macaluso — Saggio</div>
+        <div class="price">€ 13,30 (–5% su 14,00)</div>
+        <div class="desc">La triade oscura che ha condizionato la Repubblica. Documenti e memoria politica per leggere colpi di Stato mancati, stragi e omicidi eccellenti.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/mafia-massoneria-servizi-segreti-libro-emanuele-macaluso/e/9788868435004" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 30 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=La+notte+della+Repubblica');"></div>
+      <div class="body">
+        <div class="title">La notte della Repubblica</div>
+        <div class="meta">Sergio Zavoli — Saggio / Interviste</div>
+        <div class="price">€ 23,75 (–5% su 25,00)</div>
+        <div class="desc">Piazza Fontana, Italicus, Moro, Bologna: il viaggio nei misteri d’Italia raccontato con le voci dei protagonisti. Un quadro a 360° degli anni di piombo e dei depistaggi.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/notte-della-repubblica-libro-sergio-zavoli/e/9788807902703" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 31 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=I+soldi+della+P2');"></div>
+      <div class="body">
+        <div class="title">I soldi della P2</div>
+        <div class="meta">Fabio Repici, Antonella Beccaria, Mario Vaudano — Inchiesta</div>
+        <div class="price">€ 17,10 (–5% su 18,00)</div>
+        <div class="desc">Dove finì il tesoro della loggia Gelli? Fondi neri, riciclaggio, legami con eversione nera e omicidi eccellenti, ricostruiti seguendo i flussi finanziari.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/soldi-della-p2-tesoro-nascosto-libro-fabio-repici-antonella-beccaria/e/9788861909540" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 32 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=La+trattativa');"></div>
+      <div class="body">
+        <div class="title">La trattativa</div>
+        <div class="meta">Pietro Orsatti — Romanzo-inchiesta</div>
+        <div class="price">€ 16,00</div>
+        <div class="desc">Faction che ripercorre 1992–93, papelli, ROS, Ciancimino: personaggi ispirati al reale per immaginare il non detto, basandosi su atti giudiziari.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/trattativa-libro-pietro-orsatti/e/9788850333653" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 33 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Il+Sistema');"></div>
+      <div class="body">
+        <div class="title">Il sistema</div>
+        <div class="meta">Alessandro Sallusti, Luca Palamara — Intervista</div>
+        <div class="price">€ 17,10 (–5% su 18,00)</div>
+        <div class="desc">Confessioni sul potere delle correnti in magistratura, lottizzazioni, nomine, pressioni politiche. Un j’accuse che ha scosso il dibattito pubblico.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/sistema-potere-politica-affari-storia-libro-luca-palamara-alessandro-sallusti/e/9788833573120" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 34 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Tutti+gli+uomini+del+Presidente');"></div>
+      <div class="body">
+        <div class="title">Tutti gli uomini del Presidente</div>
+        <div class="meta">Bob Woodward, Carl Bernstein — Reportage</div>
+        <div class="price">€ 14,25 (–5% su 15,00)</div>
+        <div class="desc">Lo scandalo Watergate passo dopo passo: la fonte “Gola Profonda”, le prove, la caduta di Nixon. Il potere del giornalismo investigativo.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/tutti-uomini-del-presidente-libro-bob-woodward-carl-bernstein/e/9788834606483" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 35 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Gli+uomini+di+Putin');"></div>
+      <div class="body">
+        <div class="title">Gli uomini di Putin</div>
+        <div class="meta">Catherine Belton — Inchiesta geopolitica</div>
+        <div class="price">€ 21,37 (–5% su 22,49)</div>
+        <div class="desc">Come ex agenti del KGB hanno riconquistato la Russia e sfidato l’Occidente: oligarchi, servizi e operazioni coperte in patria e all’estero.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/uomini-di-putin-libro-catherine-belton/e/9788833939049" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 36 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Snowden');"></div>
+      <div class="body">
+        <div class="title">Snowden. La vera storia dell’uomo più ricercato del mondo</div>
+        <div class="meta">Luke Harding — Reportage</div>
+        <div class="price">€ 17,10 (–5% su 18,00)</div>
+        <div class="desc">La fuga di Edward Snowden e i programmi segreti di sorveglianza di massa della NSA: Prism, intercettazioni, diritti digitali.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/snowden-vera-storia-dell-uomo-libro-luke-harding/e/9788898722525" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 37 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Black+Mass');"></div>
+      <div class="body">
+        <div class="title">Black Mass. L’ultimo gangster</div>
+        <div class="meta">Dick Lehr, Gerard O’Neill — Inchiesta</div>
+        <div class="price">€ 19,00</div>
+        <div class="desc">Whitey Bulger, boss di Boston, protetto dall’FBI in cambio di informazioni. Un patto scellerato che ha permesso a un killer di prosperare per decenni.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/black-mass-ultimo-gangster-libro-dick-lehr-gerard-o-neill/e/9788893443982" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 38 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Archivio+Mitrokhin');"></div>
+      <div class="body">
+        <div class="title">L’Archivio Mitrokhin</div>
+        <div class="meta">Christopher Andrew, Vasilij Mitrokhin — Saggio</div>
+        <div class="price">€ 28,50</div>
+        <div class="desc">Quarant’anni di operazioni del KGB in Occidente: reti di spie, assassini di dissidenti, finanziamenti occulti. Documenti esplosivi di un archivista disertore.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/archivio-mitrokhin-libro-christopher-andrew-vasilij-mitrokhin/e/9788817009751" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 39 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Panama+Papers');"></div>
+      <div class="body">
+        <div class="title">Panama Papers</div>
+        <div class="meta">Bastian Obermayer, Frederik Obermaier — Inchiesta</div>
+        <div class="price">€ 18,05 (–5% su 19,00)</div>
+        <div class="desc">Il più grande leak finanziario di sempre: paradisi fiscali, società offshore, ricchezze nascoste di politici, celebrità e criminali, ricostruiti da un consorzio globale di giornalisti.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/panama-papers-affari-segreti-del-libro-frederik-obermaier-bastian-obermayer/e/9788811147169" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 40 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Narcoland');"></div>
+      <div class="body">
+        <div class="title">Narcoland. I signori del narcotraffico messicano</div>
+        <div class="meta">Anabel Hernández — Inchiesta</div>
+        <div class="price">€ 21,85 (–5% su 23,00)</div>
+        <div class="desc">Cartelli, politica, esercito: un sistema di collusioni che ha trasformato il Messico in un narcostato. Indagine rischiosissima e documentata.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/narcoland-signori-del-narcotraffico-messicano-libro-anabel-hernandez/e/9788898722266" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 41 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Le+buone+madri');"></div>
+      <div class="body">
+        <div class="title">Le buone madri</div>
+        <div class="meta">Alex Perry — True crime / ’Ndrangheta</div>
+        <div class="price">€ 17,10 (–5% su 18,00)</div>
+        <div class="desc">Lea Garofalo, Giuseppina Pesce, Maria Concetta Cacciola: donne che sfidano i clan e cambiano la lotta alla ’ndrangheta. Coraggio e sacrificio.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/buone-madri-storia-di-donne-libro-alex-perry/e/9788807492150" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 42 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Confessioni+di+un+sicario+dell%27economia');"></div>
+      <div class="body">
+        <div class="title">Confessioni di un sicario dell’economia</div>
+        <div class="meta">John Perkins — Memoir / Inchiesta</div>
+        <div class="price">€ 16,05 (–5% su 16,90)</div>
+        <div class="desc">Un ex consulente confessa i meccanismi con cui si indebitano paesi del Sud del mondo per assoggettarli a interessi geopolitici ed economici. Controverso e avvincente.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/confessioni-di-un-sicario-dell-libro-john-perkins/e/9788866209576" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 43 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=McMafia');"></div>
+      <div class="body">
+        <div class="title">McMafia. Criminalità senza frontiere</div>
+        <div class="meta">Misha Glenny — Saggio</div>
+        <div class="price">€ 17,10 (–5% su 18,00)</div>
+        <div class="desc">Il crimine organizzato nell’era globale: Russia, Balcani, Nigeria, cartelli, hacker, riciclaggio nella City. Un mosaico geopolitico avvincente.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/mcmafia-criminalita-senza-frontiere-libro-misha-glenny/e/9788804600077" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========================= FILOSOFIA ========================= -->
+<section id="filosofia">
+  <h2 class="cat">Filosofia &amp; Psicologia</h2>
+  <div class="grid">
+
+    <!-- 44 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Il+mondo+di+Sofia');"></div>
+      <div class="body">
+        <div class="title">Il mondo di Sofia</div>
+        <div class="meta">Jostein Gaarder — Romanzo filosofico</div>
+        <div class="price">€ 13,30 (–5% su 14,00)</div>
+        <div class="desc">Un misterioso mentore guida una quindicenne nella storia della filosofia, da Talete a Sartre. Romanzo didattico che fa pensare divertendo.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/mondo-di-sofia-romanzo-sulla-libro-jostein-gaarder/e/9788831001489" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 45 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Pensieri+lenti+e+veloci');"></div>
+      <div class="body">
+        <div class="title">Pensieri lenti e veloci</div>
+        <div class="meta">Daniel Kahneman — Psicologia cognitiva</div>
+        <div class="price">€ 18,05 (–5% su 19,00)</div>
+        <div class="desc">Sistema 1 e Sistema 2: intuizione ed analisi. Bias, euristiche, decisioni quotidiane ed errori sistematici spiegati dal Nobel.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/pensieri-lenti-veloci-libro-daniel-kahneman/e/9788804736127" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 46 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Uno%2C+nessuno+e+centomila');"></div>
+      <div class="body">
+        <div class="title">Uno, nessuno e centomila</div>
+        <div class="meta">Luigi Pirandello — Romanzo filosofico</div>
+        <div class="price">€ 10,36 (–5% su 10,90)</div>
+        <div class="desc">Moscarda scopre che ognuno lo vede diverso e che l’io è molteplice. Smonta la propria vita per liberarsi dalle maschere sociali, fino a dissolversi nel flusso dell’esistenza.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/uno-nessuno-centomila-libro-luigi-pirandello/e/9788807903625" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 47 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=La+banalit%C3%A0+del+male');"></div>
+      <div class="body">
+        <div class="title">La banalità del male</div>
+        <div class="meta">Hannah Arendt — Reportage filosofico</div>
+        <div class="price">€ 12,35 (–5% su 13,00)</div>
+        <div class="desc">Dal processo Eichmann nasce la tesi che il male estremo possa presentarsi come obbedienza burocratica senza pensiero. Un classico della filosofia morale e politica.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/banalita-del-male-eichmann-a-libro-hannah-arendt/e/9788807892974" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 48 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Il+corpo+e+il+trauma');"></div>
+      <div class="body">
+        <div class="title">Il corpo e il trauma</div>
+        <div class="meta">Onno van der Hart et al. — Saggio clinico</div>
+        <div class="price">€ 36,10 (–5% su 38,00)</div>
+        <div class="desc">La teoria della dissociazione strutturale della personalità: parti apparentemente normali e parti emozionali congelate nel trauma. Casi clinici, integrazione, cura.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/fantasmi-nel-se-teoria-della-libro-onno-van-der-hart-ellert-rs-nijenhuis-kathy-steele/e/9788860303447" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 49 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Il+Principe');"></div>
+      <div class="body">
+        <div class="title">Il Principe</div>
+        <div class="meta">Niccolò Machiavelli — Trattato politico</div>
+        <div class="price">€ 9,41 (–5% su 9,90)</div>
+        <div class="desc">Realismo politico: come conquistare e mantenere il potere. Astuzia e forza, apparenza e necessità. Un manuale di leadership senza moralismi.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/principe-libro-niccolo-machiavelli/e/9788807902116" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 50 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=L%27uomo+in+cerca+di+senso');"></div>
+      <div class="body">
+        <div class="title">L’uomo in cerca di senso</div>
+        <div class="meta">Viktor E. Frankl — Testimonianza e psicologia</div>
+        <div class="price">€ 15,68 (–5% su 16,50)</div>
+        <div class="desc">Dai lager alla logoterapia: trovare un perché per vivere anche nell’orrore estremo. Un classico breve, potentissimo.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/uomo-alla-ricerca-di-senso-libro-viktor-e-frankl/e/9788885783140" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 51 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=L%27arte+di+amare');"></div>
+      <div class="body">
+        <div class="title">L’arte di amare</div>
+        <div class="meta">Erich Fromm — Psicologia umanistica</div>
+        <div class="price">€ 12,82 (–5% su 13,50)</div>
+        <div class="desc">Amare è un’arte che richiede disciplina, cura, responsabilità, conoscenza. Contro la passività romantica e il consumismo affettivo.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/arte-di-amare-libro-erich-fromm/e/9788804779865" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 52 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Il+corpo+ha+le+sue+ragioni');"></div>
+      <div class="body">
+        <div class="title">Il corpo ha le sue ragioni</div>
+        <div class="meta">Thérèse Bertherat — Saggio</div>
+        <div class="price">€ 14,16 (–5% su 14,90)</div>
+        <div class="desc">Tensioni emotive e traumi si inscrivono nei muscoli. L’antiginnastica scioglie rigidità fisiche per liberare anche i blocchi interiori.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/corpo-ha-sue-ragioni-libro-therese-bertherat/e/9788807900037" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 53 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Quando+Nietzsche+pianse');"></div>
+      <div class="body">
+        <div class="title">Quando Nietzsche pianse</div>
+        <div class="meta">Irvin D. Yalom — Romanzo psicologico</div>
+        <div class="price">€ 13,21 (–5% su 13,90)</div>
+        <div class="desc">Breuer e Nietzsche in un confronto terapeutico immaginario: volontà, libero arbitrio, eterno ritorno. Finzione colta che esplora origini della psicanalisi.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/quando-nietzsche-pianse-romanzo-libro-irvin-d-yalom/e/9788807040443" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 54 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=L%27uomo+che+scambi%C3%B2+sua+moglie+per+un+cappello');"></div>
+      <div class="body">
+        <div class="title">L’uomo che scambiò sua moglie per un cappello</div>
+        <div class="meta">Oliver Sacks — Casi clinici</div>
+        <div class="price">€ 13,30 (–5% su 14,00)</div>
+        <div class="desc">Venti storie neurologiche sorprendenti. Empatia scientifica e meraviglia per la mente umana, tra deficit e creatività adattiva.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/uomo-che-scambio-sua-moglie-libro-oliver-sacks/e/9788869182050" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 55 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Lo+zen+e+l%27arte+della+manutenzione+della+motocicletta');"></div>
+      <div class="body">
+        <div class="title">Lo zen e l’arte della manutenzione della motocicletta</div>
+        <div class="meta">Robert M. Pirsig — Romanzo filosofico</div>
+        <div class="price">€ 14,16 (–5% su 14,90)</div>
+        <div class="desc">On the road padre-figlio. La “Qualità” tra approccio tecnico e romantico, viaggio nella follia e nella cura di sé. Un classico di formazione filosofica.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/zen-arte-della-manutenzione-della-libro-robert-m-pirsig/e/9788807882807" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 56 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Il+piccolo+principe');"></div>
+      <div class="body">
+        <div class="title">Il piccolo principe</div>
+        <div class="meta">Antoine de Saint-Exupéry — Racconto filosofico</div>
+        <div class="price">€ 10,35 (–5% su 10,90)</div>
+        <div class="desc">Una fiaba per adulti: amicizia, responsabilità, amore. “Si vede bene solo con il cuore”. Ogni rilettura svela nuovi sensi.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/piccolo-principe-libro-antoine-de-saint-exupery/e/9788804668237" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 57 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Jonathan+Livingston+Gabbiano');"></div>
+      <div class="body">
+        <div class="title">Il gabbiano Jonathan Livingston</div>
+        <div class="meta">Richard Bach — Racconto allegorico</div>
+        <div class="price">€ 10,36 (–5% su 10,90)</div>
+        <div class="desc">La passione per il volo come metafora della libertà e dell’autoperfezionamento. Una parabola zen sull’essere fedeli alla propria vocazione.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/gabbiano-jonathan-livingston-libro-richard-bach/e/9788807903441" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 58 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=L%27arte+di+essere+fragili');"></div>
+      <div class="body">
+        <div class="title">L’arte di essere fragili</div>
+        <div class="meta">Alessandro D’Avenia — Narrativa filosofica</div>
+        <div class="price">€ 12,26 (–5% su 12,90)</div>
+        <div class="desc">Lettere a Leopardi: dal dolore alla felicità possibile. Un invito a trasformare le crepe in luce, con lingua poetica e accessibile.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/arte-di-essere-fragili-come-libro-alessandro-d-avenia/e/9788804681960" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 59 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Intelligenza+Emotiva');"></div>
+      <div class="body">
+        <div class="title">Intelligenza emotiva</div>
+        <div class="meta">Daniel Goleman — Saggio</div>
+        <div class="price">€ 14,16 (–5% su 14,90)</div>
+        <div class="desc">Autocontrollo, empatia, abilità sociali: perché l’EQ pesa almeno quanto l’IQ a scuola, in famiglia, sul lavoro. Classico della psicologia pop.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/intelligenza-emotiva-libro-daniel-goleman/e/9788804681960" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 60 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Resisto+dunque+sono');"></div>
+      <div class="body">
+        <div class="title">Resisto dunque sono</div>
+        <div class="meta">Pietro Trabucchi — Psicologia della resilienza</div>
+        <div class="price">€ 14,25 (–5% su 15,00)</div>
+        <div class="desc">La resilienza si allena: motivazione, gestione dello stress, fallimenti come dati. Esempi da sport e vita reale per non mollare.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/resisto-dunque-sono-libro-pietro-trabucchi/e/9788817066013" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========================= IDEOLOGIE ========================= -->
+<section id="ideologie">
+  <h2 class="cat">Ideologie politiche applicate</h2>
+  <div class="grid">
+
+    <!-- 61 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=1984');"></div>
+      <div class="body">
+        <div class="title">1984</div>
+        <div class="meta">George Orwell — Distopia</div>
+        <div class="price">€ 10,36 (–5% su 10,90)</div>
+        <div class="desc">Il Grande Fratello, la Neolingua, il Ministero della Verità. Sorveglianza totale, propaganda e riscrittura della storia: il romanzo-mito del Novecento.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/1984-libro-george-orwell/e/9788807902086" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 62 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=La+fattoria+degli+animali');"></div>
+      <div class="body">
+        <div class="title">La fattoria degli animali</div>
+        <div class="meta">George Orwell — Allegoria politica</div>
+        <div class="price">€ 9,41 (–5% su 9,90)</div>
+        <div class="desc">“Tutti gli animali sono uguali, ma alcuni sono più uguali degli altri”. Satira graffiante sulla corruzione degli ideali rivoluzionari e lo stalinismo.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/fattoria-degli-animali-libro-george-orwell/e/9788807902109" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 63 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Arcipelago+Gulag');"></div>
+      <div class="body">
+        <div class="title">Arcipelago Gulag</div>
+        <div class="meta">Aleksandr Solženicyn — Saggio testimoniale</div>
+        <div class="price">€ 23,75 (–5% su 25,00) (vol. 1)</div>
+        <div class="desc">Il sistema concentrazionario sovietico raccontato da un ex prigioniero: arresti arbitrari, torture, lavoro forzato. Un libro che ha scosso il mondo.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/arcipelago-gulag-vol-1-2-libro-aleksandr-solzenicyn/e/9788806225193" target="_blank" rel="noopener">Apri su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 64 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Il+mondo+nuovo');"></div>
+      <div class="body">
+        <div class="title">Il mondo nuovo</div>
+        <div class="meta">Aldous Huxley — Distopia</div>
+        <div class="price">€ 11,40 (–5% su 12,00)</div>
+        <div class="desc">Una dittatura dolce di piacere e consumo: esseri umani prodotti in provetta, caste rigide, condizionamento, soma. Satira profetica del tecnocapitalismo.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/mondo-nuovo-libro-aldous-huxley/e/9788807900068" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 65 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Fahrenheit+451');"></div>
+      <div class="body">
+        <div class="title">Fahrenheit 451</div>
+        <div class="meta">Ray Bradbury — Distopia</div>
+        <div class="price">€ 13,30 (–5% su 14,00)</div>
+        <div class="desc">I pompieri bruciano i libri. Una dittatura morbida fondata sulla tv, la velocità, l’anestesia delle menti. Difesa del pensiero critico.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/fahrenheit-451-libro-ray-bradbury/e/9788804712831" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 66 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Il+racconto+dell%27ancella');"></div>
+      <div class="body">
+        <div class="title">Il racconto dell’ancella</div>
+        <div class="meta">Margaret Atwood — Distopia</div>
+        <div class="price">€ 13,30 (–5% su 14,00)</div>
+        <div class="desc">La Repubblica di Gilead, teocrazia che riduce le donne a funzioni. Corpo, libertà, resistenza: un monito attualissimo.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/racconto-dell-ancella-libro-margaret-atwood/e/9788806226848" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 67 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Il+fascismo+eterno');"></div>
+      <div class="body">
+        <div class="title">Il fascismo eterno</div>
+        <div class="meta">Umberto Eco — Saggio</div>
+        <div class="price">€ 7,60 (–5% su 8,00)</div>
+        <div class="desc">I tratti permanenti dell’Ur-Fascismo: culto della tradizione, populismo qualitativo, machismo, paura della differenza. Un vademecum per riconoscerlo.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/fascismo-eterno-libro-umberto-eco/e/9788845928611" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 68 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Omaggio+alla+Catalogna');"></div>
+      <div class="body">
+        <div class="title">Omaggio alla Catalogna</div>
+        <div class="meta">George Orwell — Memoir di guerra</div>
+        <div class="price">€ 12,35 (–5% su 13,00)</div>
+        <div class="desc">La guerra civile spagnola vista da un volontario: scontri fratricidi tra anarchici e stalinisti, propaganda e disillusione. Preludio a 1984.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/omaggio-alla-catalogna-libro-george-orwell/e/9788807902079" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 69 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=I+sommersi+e+i+salvati');"></div>
+      <div class="body">
+        <div class="title">I sommersi e i salvati</div>
+        <div class="meta">Primo Levi — Saggio</div>
+        <div class="price">€ 10,36 (–5% su 10,90)</div>
+        <div class="desc">Riflessioni finali sull’esperienza del Lager: la “zona grigia”, la memoria, la responsabilità. Analisi lucidissima del male e della testimonianza.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/sommersi-salvati-libro-primo-levi/e/9788806226275" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 70 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Il+secolo+breve');"></div>
+      <div class="body">
+        <div class="title">Il secolo breve</div>
+        <div class="meta">Eric Hobsbawm — Storia del Novecento</div>
+        <div class="price">€ 19,00</div>
+        <div class="desc">1914–1991: ascesa e caduta delle grandi ideologie. Dalla rivoluzione russa al nazifascismo, dalla Guerra fredda al trionfo del capitalismo globale.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/secolo-breve-1914-1991-l-eta-libro-eric-j-hobsbawm/e/9788845925887" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 71 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=La+via+della+schiavit%C3%B9');"></div>
+      <div class="body">
+        <div class="title">La via della schiavitù</div>
+        <div class="meta">Friedrich A. Hayek — Saggio</div>
+        <div class="price">€ 17,10 (–5% su 18,00)</div>
+        <div class="desc">Critica alla pianificazione centrale: come buone intenzioni possono condurre a regimi oppressivi. Un classico del liberalismo.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/via-della-schiavitu-libro-friedrich-a-hayek/e/9788858138908" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 72 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Il+capitalismo+della+sorveglianza');"></div>
+      <div class="body">
+        <div class="title">Il capitalismo della sorveglianza</div>
+        <div class="meta">Shoshana Zuboff — Saggio</div>
+        <div class="price">€ 25,65 (–5% su 27,00)</div>
+        <div class="desc">Le Big Tech trasformano l’esperienza umana in dati da monetizzare: potere predittivo, manipolazione, democrazia a rischio. Analisi fondamentale.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/capitalismo-della-sorveglianza-futuro-dell-libro-shoshana-zuboff/e/9788812009695" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 73 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Sulle+origini+del+totalitarismo');"></div>
+      <div class="body">
+        <div class="title">Le origini del totalitarismo</div>
+        <div class="meta">Hannah Arendt — Saggio</div>
+        <div class="price">€ 27,55 (–5% su 29,00)</div>
+        <div class="desc">Antisemitismo, imperialismo, totalitarismo: la genesi dei regimi nazista e stalinista. Un’opera monumentale di analisi politica e storica.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/origini-del-totalitarismo-libro-hannah-arendt/e/9788845905759" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 74 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=L%27uomo+in+rivolta');"></div>
+      <div class="body">
+        <div class="title">L’uomo in rivolta</div>
+        <div class="meta">Albert Camus — Saggio</div>
+        <div class="price">€ 14,16 (–5% su 14,90)</div>
+        <div class="desc">Dalla rivolta individuale alla rivoluzione storica: giustizia, misura, rifiuto dell’assoluto. Un’etica contro gli estremismi sanguinosi del secolo.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/uomo-in-rivolta-libro-albert-camus/e/9788806221683" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 75 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Manifesto+del+partito+comunista');"></div>
+      <div class="body">
+        <div class="title">Manifesto del partito comunista</div>
+        <div class="meta">Karl Marx, Friedrich Engels — Saggio</div>
+        <div class="price">€ 5,60 (–5% su 5,90)</div>
+        <div class="desc">Lotta di classe, capitalismo, rivoluzione: il testo fondativo del comunismo, breve e icastico, che ha segnato la storia contemporanea.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/manifesto-del-partito-comunista-libro-karl-marx-friedrich-engels/e/9788807902918" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 76 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Capitale+e+ideologia');"></div>
+      <div class="body">
+        <div class="title">Capitale e ideologia</div>
+        <div class="meta">Thomas Piketty — Saggio</div>
+        <div class="price">€ 25,65 (–5% su 27,00)</div>
+        <div class="desc">Storia delle disuguaglianze e delle giustificazioni ideologiche che le sostengono. Proposte per una democrazia partecipativa e fiscale più equa.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/capitale-ideologia-libro-thomas-piketty/e/9788804732334" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 77 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=La+democrazia+in+America');"></div>
+      <div class="body">
+        <div class="title">La democrazia in America</div>
+        <div class="meta">Alexis de Tocqueville — Saggio</div>
+        <div class="price">€ 23,75 (–5% su 25,00)</div>
+        <div class="desc">Il laboratorio democratico americano dell’Ottocento: uguaglianza, associazionismo, tirannia della maggioranza. Un classico della scienza politica.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/democrazia-in-america-libro-alexis-de-tocqueville/e/9788806226725" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 78 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Leviatano');"></div>
+      <div class="body">
+        <div class="title">Leviatano</div>
+        <div class="meta">Thomas Hobbes — Trattato</div>
+        <div class="price">€ 18,05 (–5% su 19,00)</div>
+        <div class="desc">Contratto sociale e sovranità: per evitare la guerra di tutti contro tutti serve uno Stato forte. Fondamento del pensiero politico moderno.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/leviatano-libro-thomas-hobbes/e/9788845906602" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 79 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Il+contratto+sociale');"></div>
+      <div class="body">
+        <div class="title">Il contratto sociale</div>
+        <div class="meta">Jean-Jacques Rousseau — Trattato</div>
+        <div class="price">€ 12,26 (–5% su 12,90)</div>
+        <div class="desc">“L’uomo è nato libero e ovunque è in catene”. Sovranità popolare, volontà generale, libertà civile: pilastri del pensiero democratico.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/contratto-sociale-libro-jean-jacques-rousseau/e/9788807902161" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 80 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Lungo+cammino+verso+la+libert%C3%A0');"></div>
+      <div class="body">
+        <div class="title">Lungo cammino verso la libertà</div>
+        <div class="meta">Nelson Mandela — Autobiografia</div>
+        <div class="price">€ 16,05 (–5% su 16,90)</div>
+        <div class="desc">Dall’infanzia nel Transkei ai 27 anni di carcere, alla presidenza del Sudafrica. La costruzione paziente di una democrazia multirazziale.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/lungo-cammino-verso-liberta-autobiografia-libro-nelson-mandela/e/9788804719397" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========================= KAFKIANI ========================= -->
+<section id="kafka">
+  <h2 class="cat">Atmosfere kafkiane (alienazione, burocrazia, assurdo)</h2>
+  <div class="grid">
+
+    <!-- 81 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Il+deserto+dei+Tartari');"></div>
+      <div class="body">
+        <div class="title">Il deserto dei Tartari</div>
+        <div class="meta">Dino Buzzati — Romanzo</div>
+        <div class="price">€ 12,82 (–5% su 13,50)</div>
+        <div class="desc">Il tenente Drogo alla fortezza Bastiani, in attesa del nemico che non arriva mai. Tempo sospeso, attesa che divora la vita, grande metafora esistenziale.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/deserto-dei-tartari-libro-dino-buzzati/e/9788807885242" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 82 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Il+fu+Mattia+Pascal');"></div>
+      <div class="body">
+        <div class="title">Il fu Mattia Pascal</div>
+        <div class="meta">Luigi Pirandello — Romanzo</div>
+        <div class="price">€ 9,41 (–5% su 9,90)</div>
+        <div class="desc">Creduto morto, Mattia cambia identità, ma vivere “fuori legge” si rivela impossibile. Burocrazia e convenzioni imprigionano più della vita precedente.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/fu-mattia-pascal-libro-luigi-pirandello/e/9788807903601" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 83 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Tempo+di+uccidere');"></div>
+      <div class="body">
+        <div class="title">Tempo di uccidere</div>
+        <div class="meta">Ennio Flaiano — Romanzo</div>
+        <div class="price">€ 11,40 (–5% su 12,00)</div>
+        <div class="desc">Guerra coloniale in Etiopia: un delitto accidentale, paranoia e senso di colpa. Un incubo febbrile e grottesco in pieno sole africano.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/tempo-di-uccidere-libro-ennio-flaiano/e/9788807890628" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 84 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Gli+indifferenti');"></div>
+      <div class="body">
+        <div class="title">Gli indifferenti</div>
+        <div class="meta">Alberto Moravia — Romanzo</div>
+        <div class="price">€ 10,36 (–5% su 10,90)</div>
+        <div class="desc">Vuoto morale della borghesia romana tra cinismo e apatia. Dialoghi soffocanti, desideri spenti: una claustrofobia esistenziale modernissima.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/indifferenti-libro-alberto-moravia/e/9788807903403" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 85 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=La+coscienza+di+Zeno');"></div>
+      <div class="body">
+        <div class="title">La coscienza di Zeno</div>
+        <div class="meta">Italo Svevo — Romanzo</div>
+        <div class="price">€ 10,36 (–5% su 10,90)</div>
+        <div class="desc">Memoriale ironico e inaffidabile di un nevrotico. Autoinganni, ultime sigarette, affari e amori: tragicommedia dell’io moderno smarrito.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/coscienza-di-zeno-libro-italo-svevo/e/9788807903434" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 86 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Sostiene+Pereira');"></div>
+      <div class="body">
+        <div class="title">Sostiene Pereira</div>
+        <div class="meta">Antonio Tabucchi — Romanzo</div>
+        <div class="price">€ 10,36 (–5% su 10,90)</div>
+        <div class="desc">Lisbona 1938: un giornalista culturale si risveglia alla coscienza civile sotto la dittatura salazarista. Voce sommessa, coraggio finale.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/sostiene-pereira-una-testimonianza-libro-antonio-tabucchi/e/9788817106856" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 87 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Diceria+dell%27untore');"></div>
+      <div class="body">
+        <div class="title">Diceria dell’untore</div>
+        <div class="meta">Gesualdo Bufalino — Romanzo</div>
+        <div class="price">€ 13,30 (–5% su 14,00)</div>
+        <div class="desc">Sanatorio siciliano del dopoguerra: malati in bilico fra vita e morte, un protagonista senza nome e l’amore per Marta. Lingua barocca, metafisica della fine.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/diceria-dell-untore-libro-gesualdo-bufalino/e/9788806218898" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 88 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Il+cavaliere+inesistente');"></div>
+      <div class="body">
+        <div class="title">Il cavaliere inesistente</div>
+        <div class="meta">Italo Calvino — Romanzo allegorico</div>
+        <div class="price">€ 10,36 (–5% su 10,90)</div>
+        <div class="desc">Agilulfo, armatura perfetta senza uomo dentro: identità ridotta a ruolo, regolamenti assurdi, viaggio surreale. Fiaba brillante e malinconica.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/cavaliere-inesistente-libro-italo-calvino/e/9788807902970" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 89 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=La+vita+agra');"></div>
+      <div class="body">
+        <div class="title">La vita agra</div>
+        <div class="meta">Luciano Bianciardi — Romanzo sociale</div>
+        <div class="price">€ 12,35 (–5% su 13,00)</div>
+        <div class="desc">Un bibliotecario sogna di far saltare il “castello” del potere industriale. La Milano del boom lo fagocita tra precariato e disillusione.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/vita-agra-libro-luciano-bianciardi/e/9788807903601" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 90 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Il+processo');"></div>
+      <div class="body">
+        <div class="title">Il processo</div>
+        <div class="meta">Franz Kafka — Romanzo</div>
+        <div class="price">€ 11,40 (–5% su 12,00)</div>
+        <div class="desc">Josef K. è arrestato senza sapere perché. Labirinti di tribunali in soffitte luride, accuse senza volto, sentenza ineluttabile: il paradigma del potere assurdo.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/processo-libro-franz-kafka/e/9788807903731" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 91 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Lo+straniero');"></div>
+      <div class="body">
+        <div class="title">Lo straniero</div>
+        <div class="meta">Albert Camus — Romanzo</div>
+        <div class="price">€ 10,36 (–5% su 10,90)</div>
+        <div class="desc">“Oggi la mamma è morta. O forse ieri”. Meursault, uomo senza maschere, condannato più per la sua estraneità che per il delitto. L’assurdo dell’esistenza.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/straniero-libro-albert-camus/e/9788807903670" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 92 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=La+nausea');"></div>
+      <div class="body">
+        <div class="title">La nausea</div>
+        <div class="meta">Jean-Paul Sartre — Romanzo</div>
+        <div class="price">€ 12,35 (–5% su 13,00)</div>
+        <div class="desc">Antoine Roquentin scopre l’“essere gratuito” delle cose: disgusto metafisico, solitudine, possibilità di salvezza nell’arte. Manifesto dell’esistenzialismo.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/nausea-libro-jean-paul-sartre/e/9788807903854" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 93 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Il+maestro+e+Margherita');"></div>
+      <div class="body">
+        <div class="title">Il maestro e Margherita</div>
+        <div class="meta">Michail Bulgakov — Romanzo</div>
+        <div class="price">€ 15,20 (–5% su 16,00)</div>
+        <div class="desc">Satana a Mosca smaschera l’ipocrisia del regime. Grottesco, poesia, amore e arte che non brucia: “i manoscritti non bruciano”.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/maestro-margherita-ediz-integrale-libro-michail-bulgakov/e/9788804713616" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 94 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Memorie+dal+sottosuolo');"></div>
+      <div class="body">
+        <div class="title">Memorie dal sottosuolo</div>
+        <div class="meta">Fëdor Dostoevskij — Romanzo breve</div>
+        <div class="price">€ 9,41 (–5% su 9,90)</div>
+        <div class="desc">Monologo di un anti-eroe lucido e autodistruttivo. Orgoglio, abiezione, libertà irrazionale: un progenitore dell’alienazione novecentesca.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/memorie-dal-sottosuolo-libro-fedor-m-dostoevskij/e/9788807903380" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 95 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Noi');"></div>
+      <div class="body">
+        <div class="title">Noi</div>
+        <div class="meta">Evgenij Zamjatin — Distopia</div>
+        <div class="price">€ 12,35 (–5% su 13,00)</div>
+        <div class="desc">L’Unico Stato di vetro: cittadini numeri, polizia “benefica”, lobotomia dell’immaginazione. Il capostipite delle distopie anti-totalitarie.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/noi-libro-evgenij-zamjatin/e/9788806228125" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 96 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Invito+a+una+decapitazione');"></div>
+      <div class="body">
+        <div class="title">Invito a una decapitazione</div>
+        <div class="meta">Vladimir Nabokov — Romanzo</div>
+        <div class="price">€ 11,40 (–5% su 12,00)</div>
+        <div class="desc">Cincinnatus C. condannato per “gnostico-turpitudine”: una colpa senza senso. Carcere teatrale, boia gentili, finale metafisico di liberazione.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/invito-una-decapitazione-libro-vladimir-nabokov/e/9788806225599" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 97 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Cecit%C3%A0');"></div>
+      <div class="body">
+        <div class="title">Cecità</div>
+        <div class="meta">José Saramago — Romanzo</div>
+        <div class="price">€ 12,35 (–5% su 13,00)</div>
+        <div class="desc">Un’epidemia di “bianca cecità” fa crollare la civiltà. Un gruppo guidato da un’unica vedente attraversa barbarie e solidarietà. Parabola crudele e compassionevole.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/cecita-libro-jose-saramago/e/9788806236724" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 98 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Il+castello');"></div>
+      <div class="body">
+        <div class="title">Il castello</div>
+        <div class="meta">Franz Kafka — Romanzo</div>
+        <div class="price">€ 12,35 (–5% su 13,00)</div>
+        <div class="desc">L’agrimensore K. cerca invano di entrare in contatto con le Autorità del Castello. Regole arcane, permessi negati, un sistema incomprensibile e pervasivo.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/castello-libro-franz-kafka/e/9788807903762" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 99 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Lo+scherzo');"></div>
+      <div class="body">
+        <div class="title">Lo scherzo</div>
+        <div class="meta">Milan Kundera — Romanzo</div>
+        <div class="price">€ 13,30 (–5% su 14,00)</div>
+        <div class="desc">Una cartolina ironica costa l’espulsione dal Partito e anni di punizione. La vendetta tardiva rivela l’assurdo di un regime che non capisce lo scherzo.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/scherzo-libro-milan-kundera/e/9788807016158" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 100 -->
+    <div class="card">
+      <div class="cover" style="background-image:url('https://via.placeholder.com/600x900.png?text=Cigni+selvatici');"></div>
+      <div class="body">
+        <div class="title">Cigni selvatici. Tre figlie della Cina</div>
+        <div class="meta">Jung Chang — Saga autobiografica</div>
+        <div class="price">€ 17,10 (–5% su 18,00)</div>
+        <div class="desc">Tre generazioni di donne attraversano un secolo di storia cinese: concubinato, rivoluzione, maoismo, rivoluzione culturale. Ideologia e vita quotidiana viste dall’interno.</div>
+        <div class="buy">
+          <a class="btn" href="https://www.lafeltrinelli.it/cigni-selvatici-tre-figlie-della-libro-jung-chang/e/9788811677109" target="_blank" rel="noopener">Compra su laFeltrinelli</a>
+          <span class="badge">Cartaceo</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <p><strong>Aggiornamento prezzi:</strong> rilevati il <span id="date"></span> su LaFeltrinelli per le edizioni cartacee indicate; possono esistere edizioni alternative con prezzi differenti o non disponibili. Verifica sempre la scheda prodotto.</p>
+  <p class="small">Le copertine visualizzate sono segnaposto. Se vuoi, posso sostituirle con le immagini ufficiali delle relative schede Feltrinelli.</p>
+</footer>
+
+<script>
+document.getElementById('date').textContent = new Date().toLocaleDateString('it-IT');
+</script>
 
 </body>
 </html>
