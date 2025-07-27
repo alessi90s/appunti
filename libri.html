@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>50 Libri Consigliati</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: -apple-system, BlinkMacSystemFont, “Segoe UI”, Roboto, Oxygen, Ubuntu, Cantarell, “Open Sans”, “Helvetica Neue”, sans-serif;
+      background: #fafafa;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 2rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+      gap: 20px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    }
+    .card img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      background: #ddd;
+    }
+    .content {
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .title {
+      font-size: 1rem;
+      font-weight: bold;
+      margin: 0 0 5px;
+      color: #0070f3;
+      text-decoration: none;
+    }
+    .meta {
+      font-size: 0.85rem;
+      color: #555;
+      margin-bottom: 8px;
+    }
+    .desc {
+      font-size: 0.85rem;
+      color: #444;
+      line-height: 1.3;
+      flex-grow: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>50 Libri Consigliati</h1>
+  <div class="grid" id="grid"></div>
+
+  <script>
+    const books = [
+      { title: "Se questo è un uomo", author: "Primo Levi", nationality: "Italiana", genre: "Testimonianza", description: "Testimonianza sui campi di concentramento di Auschwitz, un racconto di disumanizzazione e speranza.", link:"https://www.amazon.it/s?k=Se+questo+%C3%A8+un+uomo+Primo+Levi" },
+      { title: "Nel mare ci sono i coccodrilli", author: "Fabio Geda", nationality: "Italiana", genre: "Testimonianza", description: "La vera storia di Enaiatollah, bambino afghano nell’odissea verso l’Italia.", link:"https://www.amazon.it/s?k=Nel+mare+ci+sono+i+coccodrilli+Fabio+Geda" },
+      { title: "Una vita come tante", author: "Hanya Yanagihara", nationality: "Statunitense", genre: "Romanzo", description: "Intenso romanzo su amicizia, traumi e resilienza a New York.", link:"https://www.amazon.it/s?k=Una+vita+come+tante+Hanya+Yanagihara" },
+      { title: "La città dei vivi", author: "Nicola Lagioia", nationality: "Italiana", genre: "Romanzo-inchiesta", description: "Inchiesta sul delitto Varani e le sue implicazioni sociali.", link:"https://www.amazon.it/s?k=La+citt%C3%A0+dei+vivi+Nicola+Lagioia" },
+      { title: "L’avversario", author: "Emmanuel Carrère", nationality: "Francese", genre: "Romanzo biografico", description: "La doppia vita di Jean-Claude Romand, tra menzogne e delitto.", link:"https://www.amazon.it/s?k=L%27avversario+Emmanuel+Carr%C3%A8re" },
+      { title: "Le ceneri di Angela", author: "Frank McCourt", nationality: "Irlandese-Americano", genre: "Memoir", description: "Memoir sull’infanzia poverissima nell’Irlanda degli anni ’30.", link:"https://www.amazon.it/s?k=Le+ceneri+di+Angela+Frank+McCourt" },
+      { title: "In quelle tenebre", author: "Gitta Sereny", nationality: "Austriaca-Britannica", genre: "Reportage", description: "Interviste con Franz Stangl, comandante di Treblinka.", link:"https://www.amazon.it/s?k=In+quelle+tenebre+Gitta+Sereny" },
+      { title: "Fino a quando la mia stella brillerà", author: "Liliana Segre & Daniela Palumbo", nationality: "Italiana", genre: "Testimonianza", description: "La deportazione di Liliana Segre ad Auschwitz e il valore della Memoria.", link:"https://www.amazon.it/s?k=Fino+a+quando+la+mia+stella+briller%C3%A0+Liliana+Segre" },
+      { title: "Una stanza piena di gente", author: "Daniel Keyes", nationality: "Statunitense", genre: "Biografia", description: "Caso reale di disturbo dissociativo dell’identità in un criminale.", link:"https://www.amazon.it/s?k=Una+stanza+piena+di+gente+Daniel+Keyes" },
+      { title: "L’educazione", author: "Tara Westover", nationality: "Statunitense", genre: "Memoir", description: "Da figlia di fondamentalisti a studiosa universitaria: il potere della conoscenza.", link:"https://www.amazon.it/s?k=L%27educazione+Tara+Westover" },
+      { title: "Niente e così sia", author: "Oriana Fallaci", nationality: "Italiana", genre: "Reportage", description: "Diario di guerra in Vietnam, tra crudo realismo e riflessioni esistenziali.", link:"https://www.amazon.it/s?k=Niente+e+cos%C3%AC+sia+Oriana+Fallaci" },
+      { title: "La vita davanti a sé", author: "Romain Gary", nationality: "Franco-Lituano", genre: "Romanzo", description: "Il legame tra un ragazzino e un’ex deportata ad Auschwitz a Parigi.", link:"https://www.amazon.it/s?k=La+vita+davanti+a+s%C3%A9+Romain+Gary" },
+      { title: "Il corpo accusa il colpo", author: "Bessel van der Kolk", nationality: "Olandese-Americano", genre: "Saggio", description: "Come il trauma si imprime sul corpo: neuroscienze e guarigione.", link:"https://www.amazon.it/s?k=Il+corpo+accusa+il+colpo+Bessel+van+der+Kolk" },
+      { title: "Italia occulta", author: "Giuliano Turone", nationality: "Italiana", genre: "Saggio", description: "Magistrato racconta P2, stragi e servizi deviati negli anni ’70.", link:"https://www.amazon.it/s?k=Italia+occulta+Giuliano+Turone" },
+      { title: "Gomorra", author: "Roberto Saviano", nationality: "Italiana", genre: "Inchiesta", description: "Denuncia della camorra napoletana e del suo potere economico.", link:"https://www.amazon.it/s?k=Gomorra+Roberto+Saviano" },
+      { title: "Il giorno della civetta", author: "Leonardo Sciascia", nationality: "Italiana", genre: "Romanzo giallo", description: "Primo romanzo italiano sulla mafia e l’omertà in Sicilia.", link:"https://www.amazon.it/s?k=Il+giorno+della+civetta+Leonardo+Sciascia" },
+      { title: "Navi a perdere", author: "Carlo Lucarelli", nationality: "Italiana", genre: "Inchiesta", description: "Traffico di rifiuti tossici via mare: ecomafia e misteri.", link:"https://www.amazon.it/s?k=Navi+a+perdere+Carlo+Lucarelli" },
+      { title: "Educazione americana", author: "Fabrizio Gatti", nationality: "Italiana", genre: "Inchiesta", description: "Un infiltrato CIA svela ingerenze e dossieraggi in Italia.", link:"https://www.amazon.it/s?k=Educazione+americana+Fabrizio+Gatti" },
+      { title: "Il patto", author: "Nicola Biondo & Sigfrido Ranucci", nationality: "Italiana", genre: "Inchiesta", description: "Ricostruzione dell’accordo segreto tra Stato e mafia nei ’90.", link:"https://www.amazon.it/s?k=Il+patto+Biondo+Ranucci" },
+      { title: "La parola ai morti", author: "Philippe Boxho", nationality: "Belga", genre: "Reportage", description: "Medico legale racconta come i cadaveri parlino nei processi.", link:"https://www.amazon.it/s?k=La+parola+ai+morti+Philippe+Boxho" },
+      { title: "Mafia, massoneria e servizi segreti", author: "Emanuele Macaluso", nationality: "Italiana", genre: "Saggio", description: "La triade oscura che ha condizionato la storia repubblicana.", link:"https://www.amazon.it/s?k=Mafia+massoneria+e+servizi+segreti+Emanuele+Macaluso" },
+      { title: "Cose di Cosa Nostra", author: "Giovanni Falcone & Marcelle Padovani", nationality: "Italiana", genre: "Dialogo", description: "Le analisi di Falcone sulla struttura e sui mandamenti mafiosi.", link:"https://www.amazon.it/s?k=Cose+di+Cosa+Nostra+Giovanni+Falcone" },
+      { title: "La notte della Repubblica", author: "Sergio Zavoli", nationality: "Italiana", genre: "Saggio/Interviste", description: "Cronache e interviste sugli anni di piombo e la strategia della tensione.", link:"https://www.amazon.it/s?k=La+notte+della+Repubblica+Sergio+Zavoli" },
+      { title: "I soldi della P2", author: "Fabio Repici & Antonella Beccaria & Mario Vaudano", nationality: "Italiana", genre: "Inchiesta", description: "Dove finirono i fondi neri della loggia P2? Un’inchiesta economico-finanziaria.", link:"https://www.amazon.it/s?k=I+soldi+della+P2+Repici+Beccaria" },
+      { title: "La trattativa", author: "Pietro Orsatti", nationality: "Italiana", genre: "Romanzo-inchiesta", description: "Thriller basato su atti giudiziari della trattativa Stato-mafia.", link:"https://www.amazon.it/s?k=La+trattativa+Pietro+Orsatti" },
+      { title: "Il sistema", author: "Alessandro Sallusti & Luca Palamara", nationality: "Italiana", genre: "Intervista", description: "Confessioni di Palamara sulle lottizzazioni nella magistratura.", link:"https://www.amazon.it/s?k=Il+sistema+Sallusti+Palamara" },
+      { title: "Il mondo di Sofia", author: "Jostein Gaarder", nationality: "Norvegese", genre: "Romanzo filosofico", description: "Avventurosa introduzione alla storia della filosofia occidentale.", link:"https://www.amazon.it/s?k=Il+mondo+di+Sofia+Jostein+Gaarder" },
+      { title: "Pensieri lenti e veloci", author: "Daniel Kahneman", nationality: "Statunitense-Israeliano", genre: "Saggio", description: "I due sistemi di pensiero e i bias cognitivi che condizionano le nostre scelte.", link:"https://www.amazon.it/s?k=Pensieri+lenti+e+veloci+Daniel+Kahneman" },
+      { title: "Uno, nessuno e centomila", author: "Luigi Pirandello", nationality: "Italiana", genre: "Romanzo filosofico", description: "Il crollo delle certezze identitarie di un uomo scoperto da uno sguardo esterno.", link:"https://www.amazon.it/s?k=Uno+nessuno+e+centomila+Luigi+Pirandello" },
+      { title: "La banalità del male", author: "Hannah Arendt", nationality: "Tedesca-Americana", genre: "Reportage filosofico", description: "Analisi del processo Eichmann e della ‘banalità’ del male.", link:"https://www.amazon.it/s?k=La+banalit%C3%A0+del+male+Hannah+Arendt" },
+      { title: "Il corpo e il trauma", author: "Onno van der Hart et al.", nationality: "Olandese", genre: "Saggio", description: "Teoria della dissociazione strutturale dopo traumi gravi.", link:"https://www.amazon.it/s?k=Il+corpo+e+il+trauma+van+der+Hart" },
+      { title: "Il Principe", author: "Niccolò Machiavelli", nationality: "Italiana", genre: "Trattato", description: "Manuale di strategie politiche per conquistare e mantenere il potere.", link:"https://www.amazon.it/s?k=Il+Principe+Niccol%C3%B2+Machiavelli" },
+      { title: "L’uomo in cerca di senso", author: "Viktor E. Frankl", nationality: "Austria", genre: "Saggio/Testimonianza", description: "Come dare senso alla vita nelle atrocità dei lager nazisti.", link:"https://www.amazon.it/s?k=L%27uomo+in+cerca+di+senso+Viktor+Frankl" },
+      { title: "L’arte di amare", author: "Erich Fromm", nationality: "Tedesco-Americano", genre: "Saggio", description: "L’amore come arte che richiede cura, responsabilità e conoscenza.", link:"https://www.amazon.it/s?k=L%27arte+di+amare+Erich+Fromm" },
+      { title: "Il corpo ha le sue ragioni", author: "Thérèse Bertherat", nationality: "Francese", genre: "Saggio", description: "Metodo corpomente per sciogliere tensioni emotive e blocchi fisici.", link:"https://www.amazon.it/s?k=Il+corpo+ha+le+sue+ragioni+Th%C3%A9r%C3%A8se+Bertherat" },
+      { title: "Il mito di Jung", author: "Marie-Louise von Franz", nationality: "Svizzera", genre: "Saggio", description: "Introduzione al pensiero junghiano fra simboli e inconscio collettivo.", link:"https://www.amazon.it/s?k=Il+mito+di+Jung+Marie-Louise+von+Franz" },
+      { title: "1984", author: "George Orwell", nationality: "Britannica", genre: "Romanzo distopico", description: "Surveglianza totale e manipolazione della verità in uno Stato totalitario.", link:"https://www.amazon.it/s?k=1984+George+Orwell" },
+      { title: "La fattoria degli animali", author: "George Orwell", nationality: "Britannica", genre: "Allegoria", description: "Fiaba-amara sul tradimento degli ideali rivoluzionari.", link:"https://www.amazon.it/s?k=La+fattoria+degli+animali+George+Orwell" },
+      { title: "Arcipelago Gulag", author: "Aleksandr Solženicyn", nationality: "Russian", genre: "Saggio/Testimonianza", description: "Denuncia dei campi di lavoro forzato sovietici.", link:"https://www.amazon.it/s?k=Arcipelago+Gulag+Aleksandr+Sol%C5%BEenicyn" },
+      { title: "Omaggio alla Catalogna", author: "George Orwell", nationality: "Britannica", genre: "Memoir", description: "Esperienza di guerra e lotte interne tra fazioni repubblicane spagnole.", link:"https://www.amazon.it/s?k=Omaggio+alla+Catalogna+George+Orwell" },
+      { title: "Il secolo breve", author: "Eric Hobsbawm", nationality: "Britannico", genre: "Saggio", description: "Storia del Novecento attraverso le grandi ideologie politiche.", link:"https://www.amazon.it/s?k=Il+secolo+breve+Eric+Hobsbawm" },
+      { title: "La via della schiavitù", author: "Friedrich Hayek", nationality: "Austria-Britannico", genre: "Saggio", description: "Critica alla pianificazione centrale e ai pericoli del socialismo.", link:"https://www.amazon.it/s?k=La+via+della+schiavit%C3%B9+Friedrich+Hayek" },
+      { title: "Il capitalismo della sorveglianza", author: "Shoshana Zuboff", nationality: "Statunitense", genre: "Saggio", description: "Analisi dell’economia della sorveglianza digitale e del potere delle grandi tech.", link:"https://www.amazon.it/s?k=Il+capitalismo+della+sorveglianza+Shoshana+Zuboff" },
+      { title: "Sul totalitarismo", author: "Hannah Arendt", nationality: "Tedesca-Americana", genre: "Saggio", description: "Studio sui meccanismi e le origini dei regimi totalitari.", link:"https://www.amazon.it/s?k=Sul+totalitarismo+Hannah+Arendt" },
+      { title: "L’uomo in rivolta", author: "Albert Camus", nationality: "Francese", genre: "Saggio", description: "Riflessione filosofica sulla rivolta e il senso della giustizia.", link:"https://www.amazon.it/s?k=L%27uomo+in+rivolta+Albert+Camus" },
+      { title: "Il manifesto del partito comunista", author: "Karl Marx & Friedrich Engels", nationality: "Tedesca", genre: "Saggio", description: "Fondamento teorico del comunismo e analisi della lotta di classe.", link:"https://www.amazon.it/s?k=Il+manifesto+del+partito+comunista" },
+      { title: "Capitale e ideologia", author: "Thomas Piketty", nationality: "Francese", genre: "Saggio", description: "Studio delle disuguaglianze e delle ideologie economiche storiche.", link:"https://www.amazon.it/s?k=Capitale+e+ideologia+Thomas+Piketty" },
+      { title: "La democrazia in America", author: "Alexis de Tocqueville", nationality: "Francese", genre: "Saggio", description: "Analisi del sistema democratico americano e delle sue istituzioni.", link:"https://www.amazon.it/s?k=La+democrazia+in+America+Alexis+de+Tocqueville" },
+      { title: "Leviatano", author: "Thomas Hobbes", nationality: "Britannico", genre: "Trattato", description: "Teoria del contratto sociale e della sovranità dello Stato.", link:"https://www.amazon.it/s?k=Leviatano+Thomas+Hobbes" },
+      { title: "Il contratto sociale", author: "Jean-Jacques Rousseau", nationality: "Svizzera-Ginevrino", genre: "Trattato", description: "Principi del patto sociale e della libertà collettiva.", link:"https://www.amazon.it/s?k=Il+contratto+sociale+Jean-Jacques+Rousseau" }
+    ];
+
+    const grid = document.getElementById('grid');
+    books.forEach(b => {
+      const card = document.createElement('a');
+      card.className = 'card';
+      card.href = b.link;
+      card.target = '_blank';
+      card.innerHTML = `
+        <img src="https://via.placeholder.com/150x220?text=${encodeURIComponent(b.title)}" alt="Copertina ${b.title}">
+        <div class="content">
+          <div class="meta">${b.author} (${b.nationality}) – ${b.genre}</div>
+          <h2 class="title">${b.title}</h2>
+          <p class="desc">${b.description}</p>
+        </div>`;
+      grid.appendChild(card);
+    });
+  </script>
+
+</body>
+</html>
